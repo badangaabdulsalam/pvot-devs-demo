@@ -1,0 +1,21 @@
+{
+  "name": "chaos-bazaar-website",
+  "version": "1.0.0",
+  "description": "A wild, fun ecommerce website with real ordering flow.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "audit": "node scripts/audit-site.js",
+    "start:prod": "node src/server.js"
+  },
+  "keywords": [
+    "website",
+    "ecommerce",
+    "fashion",
+    "express"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {}
+}

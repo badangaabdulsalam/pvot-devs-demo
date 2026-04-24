@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Pivot Devs Demo is a wild, high-energy shopping website with 50+ products, real ordering, and a bold visual style."
+    />
+    <title>Pivot Devs Demo | Loud, Fun, Different</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Sora:wght@400;600;700&family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/images/pivot-devs-logo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/images/pivot-devs-logo.svg" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="bg-layers" aria-hidden="true">
+      <div class="blob blob-a"></div>
+      <div class="blob blob-b"></div>
+      <div class="blob blob-c"></div>
+      <div class="grid-noise"></div>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Pivot Devs Demo home">
+        <img class="brand-logo" src="/images/pivot-devs-logo.svg" alt="Pivot Devs Demo logo" />
+        <span class="brand-text">Pivot Devs Demo</span>
+      </a>
+      <nav class="site-nav">
+        <a href="#catalogSection">Shop</a>
+        <a href="#trackSection">Track Order</a>
+      </nav>
+      <button id="cartToggle" class="cart-toggle" type="button" aria-label="Open cart">
+        Cart <span id="cartCount">0</span>
+      </button>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-mark" aria-hidden="true">
+          <img src="/images/pivot-devs-logo.svg" alt="" />
+        </div>
+        <p class="chip">NOT NORMAL. NOT QUIET. PURE FUN SHOPPING.</p>
+        <h1>Wear The Loudest Version Of You.</h1>
+        <p>
+          A wild online store with clothes, perfume, jewelry, shoes, bags, watches, skincare, and many more pieces
+          curated for maximum style impact.
+        </p>
+        <div class="hero-actions">
+          <button id="startShopping" class="btn btn-primary" type="button">Start Shopping</button>
+          <button id="shuffleTheme" class="btn btn-secondary" type="button">Switch Vibe</button>
+        </div>
+        <div class="hero-stats">
+          <article>
+            <strong>64</strong>
+            <span>Unique Items</span>
+          </article>
+          <article>
+            <strong>8</strong>
+            <span>Style Categories</span>
+          </article>
+          <article>
+            <strong>Real</strong>
+            <span>Order System</span>
+          </article>
+        </div>
+      </section>
+
+      <section id="catalogSection" class="controls">
+        <div class="control-row">
+          <label>
+            Search
+            <input id="searchInput" type="search" placeholder="Try jacket, perfume, ring..." />
+          </label>
+
+          <label>
+            Category
+            <select id="categorySelect">
+              <option value="All">All</option>
+            </select>
+          </label>
+
+          <label>
+            Sort
+            <select id="sortSelect">
+              <option value="featured">Featured</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="rating-desc">Top Rated</option>
+              <option value="name-asc">Name: A to Z</option>
+            </select>
+          </label>
+
+          <button id="surpriseButton" class="btn btn-ghost" type="button">Surprise Me</button>
+        </div>
+        <p id="resultsMeta" class="results-meta">Loading products...</p>
+      </section>
+
+      <section class="catalog-section">
+        <div id="catalog" class="catalog-grid" aria-live="polite"></div>
+      </section>
+
+      <section id="trackSection" class="tracker">
+        <h2>Track Your Order</h2>
+        <p>Already placed an order? Enter your order ID to view status and details instantly.</p>
+        <form id="trackOrderForm" class="tracker-form">
+          <input id="trackOrderId" type="text" placeholder="Example: ORD-20260423-ABC123" required />
+          <button class="btn btn-primary" type="submit">Track</button>
+        </form>
+        <div id="trackOrderResult" class="tracker-result"></div>
+      </section>
+    </main>
+
+    <aside id="cartPanel" class="cart-panel" aria-hidden="true">
+      <div class="cart-head">
+        <h2>Your Cart Reactor</h2>
+        <button id="closeCart" class="btn btn-ghost" type="button">Close</button>
+      </div>
+      <div id="cartItems" class="cart-items"></div>
+      <div id="cartSummary" class="cart-summary"></div>
+
+      <form id="checkoutForm" class="checkout-form" novalidate>
+        <h3>Checkout</h3>
+        <div class="form-grid">
+          <label>Full Name <input name="name" type="text" required /></label>
+          <label>Email <input name="email" type="email" required /></label>
+          <label>Phone <input name="phone" type="tel" required /></label>
+          <label>Address Line 1 <input name="address1" type="text" required /></label>
+          <label>City <input name="city" type="text" required /></label>
+          <label>Country <input name="country" type="text" required /></label>
+          <label>Postal Code <input name="postalCode" type="text" required /></label>
+        </div>
+        <label>Address Line 2 (Optional) <input name="address2" type="text" /></label>
+        <label>
+          Notes (Optional)
+          <textarea name="notes" rows="2" maxlength="250" placeholder="Any delivery notes?"></textarea>
+        </label>
+        <button class="btn btn-primary checkout-button" type="submit">Place Real Order</button>
+        <p id="checkoutMessage" class="checkout-message"></p>
+      </form>
+    </aside>
+
+    <div id="backdrop" class="backdrop" hidden></div>
+    <div id="toastHost" class="toast-host" aria-live="polite"></div>
+
+    <script src="/app.js" defer></script>
+  </body>
+</html>
