@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-label="Accessories category image">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#172554"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <circle cx="470" cy="540" r="140" fill="none" stroke="#f8fafc" stroke-width="40"/>
+  <circle cx="730" cy="540" r="140" fill="none" stroke="#f8fafc" stroke-width="40"/>
+  <rect x="560" y="510" width="80" height="60" rx="20" fill="#f8fafc"/>
+  <rect x="350" y="730" width="500" height="70" rx="35" fill="#f8fafc" opacity="0.8"/>
+  <text x="600" y="980" text-anchor="middle" fill="#f5f3ff" font-family="Segoe UI, Arial, sans-serif" font-size="64" font-weight="700">Accessories</text>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-label="Perfume category image">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#7c2d12"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <rect x="480" y="250" width="240" height="90" rx="16" fill="#fef3c7"/>
+  <rect x="420" y="340" width="360" height="430" rx="60" fill="#fde68a"/>
+  <rect x="500" y="420" width="200" height="260" rx="40" fill="#78350f" opacity="0.28"/>
+  <text x="600" y="980" text-anchor="middle" fill="#fefce8" font-family="Segoe UI, Arial, sans-serif" font-size="64" font-weight="700">Perfume</text>
+</svg>
