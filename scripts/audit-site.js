@@ -31,6 +31,26 @@ async function checkUrl(pathname, options = {}) {
   }
 }
 
+async function checkWithRetry(pathname, options = {}, attempts = 3) {
+  let lastResult = null;
+
+  for (let i = 0; i < attempts; i += 1) {
+    const result = await checkUrl(pathname, options);
+    lastResult = result;
+
+    if (result.ok) {
+      return result;
+    }
+
+    // Retry only for transient network/timeouts and 5xx responses.
+    if (result.status !== 0 && result.status < 500) {
+      return result;
+    }
+  }
+
+  return lastResult;
+}
+
 function printResult(label, result, detail) {
   const state = result.ok ? "PASS" : "FAIL";
   const extra = detail ? ` | ${detail}` : "";
@@ -61,12 +81,20 @@ async function run() {
 
   const imageChecks = await Promise.all(
     items.map(async (item) => {
-      const imageResult = await checkUrl(item.image, { method: "HEAD" });
+      let imageResult = await checkWithRetry(item.image, { method: "HEAD" });
+      if (!imageResult.ok && imageResult.status === 0) {
+        imageResult = await checkWithRetry(item.image);
+      }
+
       if (!imageResult.ok) {
         return `${item.id} image ${item.image} => ${imageResult.status}`;
       }
 
-      const fallbackResult = await checkUrl(item.fallbackImage, { method: "HEAD" });
+      let fallbackResult = await checkWithRetry(item.fallbackImage, { method: "HEAD" });
+      if (!fallbackResult.ok && fallbackResult.status === 0) {
+        fallbackResult = await checkWithRetry(item.fallbackImage);
+      }
+
       if (!fallbackResult.ok) {
         return `${item.id} fallback ${item.fallbackImage} => ${fallbackResult.status}`;
       }

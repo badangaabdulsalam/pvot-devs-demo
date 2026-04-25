@@ -2,19 +2,19 @@
 
 This project is ready to go live.
 
-## Best Free Option (Recommended)
+## Best Zero-Cost Option
 
-Use **Render Free Web Service**.
+Use **Render Free Web Service** + a scheduled keep-awake ping.
 
-Why this is the best free fit for your current app:
-- Handles Node servers directly.
-- Easy setup from GitHub.
+Why this is the best no-money setup:
+- Free hosting for your Node server.
 - HTTPS included.
-- Works with your current start command and health endpoint.
+- Works with the current start command and health endpoint.
+- Keep-awake workflow pings `/api/health` every 10 minutes.
 
 Important free-tier caveat:
-- Render free instances can sleep after inactivity.
-- This app stores orders in local JSON files, so data may reset after redeploy/restart on free hosting.
+- Free instances can still sleep occasionally (for example, platform maintenance or delayed scheduler runs).
+- This app stores orders in local JSON files, so data may reset after redeploy/restart.
 - For permanent order history, move storage to a managed database later.
 
 ## 1) Preflight Checks
@@ -48,11 +48,20 @@ Open:
 
 If Blueprint is unavailable, create **Web Service** manually:
 - Runtime: Node
+- Plan: Free
 - Build Command: npm install
 - Start Command: npm run start:prod
 - Health Check Path: /api/health
 
-## 4) Deploy Option B: Docker Anywhere
+## 4) Keep The Free Service Warm
+
+This repository includes a GitHub Actions workflow at `.github/workflows/keep-alive.yml`.
+
+- It sends a ping to `/api/health` every 10 minutes.
+- Keep Actions enabled for this repository.
+- If your Render URL changes, update the URL inside that workflow file.
+
+## 5) Deploy Option B: Docker Anywhere
 
 Build image:
 
@@ -62,7 +71,7 @@ Run container:
 
 - docker run -p 3000:3000 -e PORT=3000 pivot-devs-demo
 
-## 5) Go-Live Checklist
+## 6) Go-Live Checklist
 
 - Confirm homepage, catalog, cart, and order tracking work on desktop and mobile.
 - Confirm /api/health returns ok=true.
@@ -72,14 +81,14 @@ Run container:
 - Enable HTTPS in hosting dashboard.
 - Re-run npm run audit after every deployment.
 
-## 6) Optional Hardening for Public Traffic
+## 7) Optional Hardening for Public Traffic
 
 - Put the app behind a CDN/proxy (Cloudflare).
 - Add automated uptime checks on /api/health.
 - Back up data/products.json and data/orders.json daily.
 - Add basic request rate limiting before heavy public promotion.
 
-## 7) Next Upgrade (Still Low Cost)
+## 8) Next Upgrade (Still Low Cost)
 
 When you want better reliability without changing frontend behavior:
 - Move orders/products from JSON files to a hosted DB (Postgres/Supabase).
